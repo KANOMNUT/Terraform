@@ -32,7 +32,9 @@ jobs:
           FOLDER_PATH=$(dirname "$TFVARS_FILE" | head -n 1)
 
       - name: "Terraform Plan"
-        run: terraform plan -var-file=$TFVARS_FILE
+        run: |
+            echo $TFVARS_FILE
+            terraform plan -var-file=$TFVARS_FILE
 
       - name: "Terraform Apply"
         run: teraform apply -var-file=$TFVARS_FILE -auto-approve
