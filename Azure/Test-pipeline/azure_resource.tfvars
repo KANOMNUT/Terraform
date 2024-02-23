@@ -17,5 +17,5 @@ subnet = [ {
 tags = {
   "System" = "Terraform_Pipeline"
   "CreateDate" = "23-Feb-2024"
-  "Owner" = "Kanomnut"
+  "Owner" = "Kanomnutt"
 }
