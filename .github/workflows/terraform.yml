@@ -22,14 +22,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v2
 
-      - name: "Terraform Format"
-        run: terraform fmt -check
-
-      - name: "Terraform Init"
-        run: terraform init
-
       - name: "Extract-TFVars"
-        id: tfvars
         run: |
           git fetch origin --prune --unshallow
           LAST_COMMIT=$(git rev-parse HEAD^1)
@@ -37,6 +30,16 @@ jobs:
           FOLDER_PATH=$(dirname "$TFVARS_FILE" | head -n 1)
           echo FOLDER_PATH=$FOLDER_PATH >> $GITHUB_ENV
           echo TFVARS_FILE=$TFVARS_FILE >> $GITHUB_ENV
+     
+      - name: "Terraform Format"
+        run: |
+          cd $FOLDER_PATH
+          terraform fmt -check
+
+      - name: "Terraform Init"
+        run: |
+          cd $FOLDER_PATH
+          terraform init
 
       - name: "Terraform Plan"
         run: |
