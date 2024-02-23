@@ -18,14 +18,14 @@ provider "azurerm" {
 }
 
 module "azure_resource_group" {
-  source = "../../../Terraform Module/Azure/resource_group"
+  source = "../../Module/Azure/resource_group"
   name = var.rg_name
   location = var.location
   tags = var.tags
 }
 
 module "azure_vnet" {
-  source = "../../../Terraform Module/Azure/VNET"
+  source = "../../Module/Azure/VNET"
   name = var.vnet_name
   location = var.location
   resource_group_name = var.rg_name
