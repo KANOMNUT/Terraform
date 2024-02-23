@@ -1,0 +1,37 @@
+name: "Terraform Plan & Deploy"
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - Azure/**
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+
+      - name: "Terraform Format"
+        run: terraform fmt -check
+
+      - name: "Terraform Init"
+        run: terraform init
+
+      - name: "Extract TFVars"
+        run: |
+          # Extract .tfvars file from the latest commit
+          TFVARS_FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep ".tfvars" || true)
+          echo "TFVARS_FILE=$TFVARS_FILE" >> $GITHUB_ENV
+
+      - name: "Terraform Plan"
+        run: terraform plan -var-file=$TFVARS_FILE
+
+      - name: "Terraform Apply"
+        run: teraform apply -auto-approve
