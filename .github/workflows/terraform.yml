@@ -56,4 +56,4 @@ jobs:
         if: steps.plan.outcome == 'success'
         run: | 
           cd $FOLDER_PATH
-          teraform apply -var-file=$TFVARS_FILE -auto-approve
+          terraform apply -var-file=$TFVARS_FILE -auto-approve
