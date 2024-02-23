@@ -26,12 +26,12 @@ jobs:
 
       - name: "Extract TFVars"
         run: |
-          # Extract .tfvars file from the latest commit
-          TFVARS_FILE=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep ".tfvars" || true)
-          echo "TFVARS_FILE=$TFVARS_FILE" >> $GITHUB_ENV
+          git fetch origin --prune --unshallow
+          git checkout $GITHUB_SHA -- Azure/**/*.tfvars
+          export TFVARS_FILE=$(find Azure/ -name "*.tfvars")
 
       - name: "Terraform Plan"
         run: terraform plan -var-file=$TFVARS_FILE
 
       - name: "Terraform Apply"
-        run: teraform apply -auto-approve
+        run: teraform apply -var-file=$TFVARS_FILE -auto-approve
