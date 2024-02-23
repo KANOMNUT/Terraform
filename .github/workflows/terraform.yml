@@ -53,7 +53,7 @@ jobs:
 
       - name: "Terraform Apply"
         id: apply
-        if: steps.plan.outcome == 'succeess'
+        if: steps.plan.outcome == 'success'
         run: | 
           cd $FOLDER_PATH
           teraform apply -var-file=$TFVARS_FILE -auto-approve
