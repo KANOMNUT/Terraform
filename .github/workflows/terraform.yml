@@ -26,8 +26,9 @@ jobs:
         run: |
           git fetch origin --prune --unshallow
           LAST_COMMIT=$(git rev-parse HEAD^1)
-          TFVARS_FILE=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA | grep ".tfvars")
+          CHANGED_FILES=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA | grep ".tfvars")
           FOLDER_PATH=$(dirname "$TFVARS_FILE" | head -n 1)
+          TFVARS_FILE=$(find "$FOLDER_PATH" -type f -name '*.tfvars' -print -quit)
           echo $FOLDER_PATH and $TFVARS_FILE
           echo FOLDER_PATH=$FOLDER_PATH >> $GITHUB_ENV
           echo TFVARS_FILE=$TFVARS_FILE >> $GITHUB_ENV
