@@ -30,6 +30,7 @@ jobs:
           LAST_COMMIT=$(git rev-parse HEAD^1)
           TFVARS_FILE=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA | grep ".tfvars")
           FOLDER_PATH=$(dirname "$TFVARS_FILE" | head -n 1)
+          echo $TFVARS_FILE
 
       - name: "Terraform Plan"
         run: |
