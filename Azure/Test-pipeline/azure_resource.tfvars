@@ -16,7 +16,6 @@ subnet = [ {
 },]
 tags = {
   "System" = "Terraform_Pipeline"
-  "CreateDate" = "16-Feb-2024"
+  "CreateDate" = "23-Feb-2024"
   "Owner" = "Kanomnutt"
 }
-# DESTROY
