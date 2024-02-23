@@ -46,14 +46,21 @@ jobs:
 
       - name: "Terraform Plan"
         id: plan
-        if: steps.validate.outcome == 'success'
+        if: steps.validate.outcome == 'success' && !contains(github.event.head_commit.message, 'destroy:')
         run: |
           cd $FOLDER_PATH
           terraform plan -var-file=$TFVARS_FILE
 
       - name: "Terraform Apply"
         id: apply
-        if: steps.plan.outcome == 'success'
+        if: steps.plan.outcome == 'success' && !contains(github.event.head_commit.message, 'destroy:')
         run: | 
           cd $FOLDER_PATH
           terraform apply -var-file=$TFVARS_FILE -auto-approve
+
+      - name: "Terraform Destroy"
+        id: destroy
+        if: steps.validate.outcome == 'success' && contains(github.event.head_commit.message, 'destroy:')
+        run:
+          cd $FOLDER_PATH
+          terraform destroy -var-file=$TFVARS_FILE -auto-approve
