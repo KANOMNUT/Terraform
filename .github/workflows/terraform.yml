@@ -29,6 +29,7 @@ jobs:
           git fetch origin --prune --unshallow
           git checkout $GITHUB_SHA -- Azure/**/*.tfvars
           export TFVARS_FILE=$(find Azure/ -name "*.tfvars")
+          echo $TFVARS_FILE
 
       - name: "Terraform Plan"
         run: terraform plan -var-file=$TFVARS_FILE
