@@ -27,7 +27,7 @@ jobs:
           git fetch origin --prune --unshallow
           LAST_COMMIT=$(git rev-parse HEAD^1)
           CHANGED_FILES=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA | grep "Azure")
-          FOLDER_PATH=$(dirname "$TFVARS_FILE" | head -n 1)
+          FOLDER_PATH=$(dirname "$CHANGED_FILES" | head -n 1)
           TFVARS_FILE=$(find "$FOLDER_PATH" -type f -name '*.tfvars' -print -quit)
           echo $CHANGED_FILES and $FOLDER_PATH and $TFVARS_FILE
           echo FOLDER_PATH=$FOLDER_PATH >> $GITHUB_ENV
