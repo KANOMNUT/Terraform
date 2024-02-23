@@ -28,15 +28,11 @@ jobs:
         run: |
           git fetch origin --prune --unshallow
           LAST_COMMIT=$(git rev-parse HEAD^1)
-          CHANGED_FILES=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA | grep ".tfvars")
-          FOLDER_PATH=$(dirname "$CHANGED_FILES" | head -n 1)
-          VAR_FILE=$(find "$FOLDER_PATH" -type f -name '*.tfvars' -print -quit)
-          echo $CHANGED_FILES
-          echo $FOLDER_PATH
-          echo $VAR_FILE
+          TFVARS_FILE=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA | grep ".tfvars")
+          FOLDER_PATH=$(dirname "$TFVARS_FILE" | head -n 1)
 
-    #   - name: "Terraform Plan"
-    #     run: terraform plan -var-file=$TFVARS_FILE
+      - name: "Terraform Plan"
+        run: terraform plan -var-file=$TFVARS_FILE
 
-    #   - name: "Terraform Apply"
-    #     run: teraform apply -var-file=$TFVARS_FILE -auto-approve
+      - name: "Terraform Apply"
+        run: teraform apply -var-file=$TFVARS_FILE -auto-approve
