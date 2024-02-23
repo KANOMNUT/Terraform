@@ -61,6 +61,6 @@ jobs:
       - name: "Terraform Destroy"
         id: destroy
         if: steps.validate.outcome == 'success' && contains(github.event.head_commit.message, 'destroy:')
-        run:
+        run: |
           cd $FOLDER_PATH
           terraform destroy -var-file=$TFVARS_FILE -auto-approve
