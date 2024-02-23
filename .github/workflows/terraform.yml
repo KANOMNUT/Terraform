@@ -33,7 +33,7 @@ jobs:
 
       - name: "Terraform Plan"
         run: |
-            echo $TFVARS_FILE
+            echo TFVARS: $TFVARS_FILE
             terraform plan -var-file=$TFVARS_FILE
 
       - name: "Terraform Apply"
