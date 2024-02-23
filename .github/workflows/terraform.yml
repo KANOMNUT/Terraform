@@ -29,7 +29,8 @@ jobs:
           git fetch origin --prune --unshallow
           LAST_COMMIT=$(git rev-parse HEAD^1)
           CHANGED_FILES=$(git diff --name-only $LAST_COMMIT $CI_COMMIT_SHA)
-          VAR_FILE=$(find . -type f -name '*.tfvars' -print -quit)
+          FOLDER_PATH=$(dirname "$CHANGED_FILES" | head -n 1)
+          VAR_FILE=$(find "$FOLDER_PATH" -type f -name '*.tfvars' -print -quit)
           echo $VAR_FILE
 
     #   - name: "Terraform Plan"
