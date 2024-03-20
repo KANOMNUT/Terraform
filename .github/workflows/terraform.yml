@@ -3,7 +3,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - Azure/**
+      - Azure/**.tfvars
 jobs:
   terraform:
     name: "Terraform"
