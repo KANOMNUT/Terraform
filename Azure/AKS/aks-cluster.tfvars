@@ -38,5 +38,5 @@ agent_pool = {
 
 tags = {
   "CreateDate" = "20-Mar-2024"
-  "System"     = "Test SonarQube on AKS"
+  "System"     = "Test SonarQube"
 }
