@@ -5,7 +5,7 @@ sku_name = "B1"
 worker_count = "1"
 zone_balancing_enabled = false
 storage_account_name = "ptpstoragepoc"
-storage_account_access_key = "07H6YarwS0BF5sdwbKYw14HLFgegS2eK9iQFa229b9WqoSmhP+JUKfIDMig/VffZi8F7fI2biR/P+AStb/4b/w=="
+# USE TF_VAR_storage_account_access_key
 stack_choice = "docker"
 docker_image_name = "nginx"
 docker_image_tag = "latest"
