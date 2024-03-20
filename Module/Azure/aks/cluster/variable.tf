@@ -26,15 +26,6 @@ variable "azure_ad" {
     server_app_id     = string
     server_app_secret = string
   })
-  default = {
-    admin_group       = null
-    client_app_id     = null
-    rbac_enabled      = null
-    rbac_managed      = null
-    server_app_id     = null
-    server_app_secret = null
-    tenant_id         = null
-  }
 }
 variable "storage_profile" {
   type = object({
@@ -45,49 +36,78 @@ variable "storage_profile" {
     snapshot_controller_enabled = optional(bool)
   })
 }
-variable "ingress" {
+variable "agent_pool" {
   type = object({
-    gateway_name = string
-    subnet_id    = string
+    name                         = string
+    vm_size                      = string
+    os_sku                       = string
+    os_disk_size_gb              = number
+    enabled_pip                  = bool
+    enabled_auto_scale           = optional(bool)
+    node_count                   = number
+    node_max_count               = optional(number)
+    node_min_count               = optional(number)
+    max_pods                     = number
+    availability_zones           = set(string)
+    only_critical_addons_enabled = optional(bool)
+    node_labels                  = optional(map(string))
   })
-  default = {
-    gateway_name = null
-    subnet_id    = null
-  }
 }
-variable "agent_pool_name" {
-  type = string
-}
-variable "agent_pool_vm_size" {
-  type = string
-}
-variable "agnet_pool_subnet" {
-  type = string
-}
-variable "agent_pool_os_sku" {
-  type = string
-}
-variable "agent_pool_os_disk_size_gb" {
-  type = string
-}
-variable "agnet_pool_pip" {
-  type = bool
-}
-variable "agent_pool_node_count" {
-  type = string
-}
-variable "agent_pool_max_pods" {
-  type = string
-}
-variable "agent_pool_availability_zones" {
-  type = set(string)
-}
-variable "agnet_pool_only_critical_addons_enabled" {
-  type = bool
-}
-variable "agent_pool_node_labels" {
-  type = map(string)
-}
+# variable "agent_pool_name" {
+#   type = string
+# }
+# variable "agent_pool_vm_size" {
+#   type = string
+# }
+# variable "agnet_pool_subnet" {
+#   type = string
+# }
+# variable "agent_pool_os_sku" {
+#   type = string
+# }
+# variable "agent_pool_os_disk_size_gb" {
+#   type = string
+# }
+# variable "agnet_pool_enabled_pip" {
+#   type = bool
+# }
+# variable "agent_pool_node_count" {
+#   type = string
+# }
+# variable "agent_pool_max_pods" {
+#   type = string
+# }
+# variable "agent_pool_availability_zones" {
+#   type = set(string)
+# }
+# variable "agnet_pool_only_critical_addons_enabled" {
+#   type = bool
+# }
+# variable "agent_pool_node_labels" {
+#   type = map(string)
+# }
 variable "tags" {
   type = map(string)
+}
+variable "vnet_rg" {
+  type = string
+}
+variable "aks_vnet_name" {
+  type = string
+}
+variable "aks_subnet_name" {
+  type = string
+}
+variable "enable_ingress_application_gateway" {
+  type = bool
+}
+variable "ingress_application_gateway" {
+  type = object({
+    name      = string
+    subnet_id = string
+  })
+  default = {
+    name      = null
+    subnet_id = null
+  }
 }
