@@ -63,25 +63,6 @@ variable "tags" {
   type = map(string)
 }
 
-variable "node_pool_stl" {
-  type = object({
-    name               = string
-    vm_size            = string
-    enabled_auto_scale = bool
-    node_count         = number
-    node_max_count     = optional(number)
-    node_min_count     = optional(number)
-    enabled_public_ip  = bool
-    max_pods           = number
-    mode               = string
-    availability_zones = set(string)
-    node_labels        = optional(map(string))
-    node_taints        = optional(list(string))
-    node_disk_size     = number
-    node_os_sku        = string
-  })
-}
-
 variable "vnet_rg" {
   type = string
 }

@@ -35,14 +35,3 @@ module "az_aks_cluster" {
   tags                               = var.tags
 }
 
-module "az_aks_nodepool_stl" {
-  source          = "../../Module/Azure/aks/node-pool"
-  aks_name        = var.aks_name
-  aks_rg          = var.resource_group_name
-  aks_vnet_name   = var.aks_vnet_name
-  aks_subnet_name = var.aks_subnet_name
-  vnet_rg         = var.vnet_rg
-  node_pool       = var.node_pool_stl
-  tags            = var.tags
-  depends_on      = [module.az_aks_cluster]
-}
