@@ -25,7 +25,7 @@ storage_profile = {
 }
 agent_pool = {
   name                         = "agt"
-  vm_size                      = "Standard_D2_v2"
+  vm_size                      = "Standard_D4as_v5"
   os_sku                       = "Ubuntu"
   os_disk_size_gb              = 128
   enabled_pip                  = false
@@ -37,6 +37,6 @@ agent_pool = {
 }
 
 tags = {
-  "CreateDate" = "12-Mar-2024"
+  "CreateDate" = "20-Mar-2024"
   "System"     = "Test SonaQube"
 }
