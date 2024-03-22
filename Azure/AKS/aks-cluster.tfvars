@@ -24,7 +24,7 @@ storage_profile = {
   snapshot_controller_enabled = true
 }
 agent_pool = {
-  name                         = "aks-agt"
+  name                         = "agtpool"
   vm_size                      = "Standard_D4as_v5"
   os_sku                       = "Ubuntu"
   os_disk_size_gb              = 128
