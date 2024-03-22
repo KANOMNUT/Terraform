@@ -24,16 +24,16 @@ storage_profile = {
   snapshot_controller_enabled = true
 }
 agent_pool = {
-  name                         = "agt"
+  name                         = "aks-agt"
   vm_size                      = "Standard_D4as_v5"
   os_sku                       = "Ubuntu"
   os_disk_size_gb              = 128
   enabled_pip                  = false
   enabled_auto_scale           = false
-  node_count                   = 3
+  node_count                   = 1
   max_pods                     = 60
   availability_zones           = ["2"]
-  only_critical_addons_enabled = true
+  only_critical_addons_enabled = false
 }
 
 enable_ingress_application_gateway = true
