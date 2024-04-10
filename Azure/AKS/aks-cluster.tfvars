@@ -44,6 +44,6 @@ enable_ingress_application_gateway = false
 
 tags = {
   "CreateDate" = "04-Apr-2024"
-  "System"     = "Upgrade-Rancher"
+  "System"     = "UpgradeRancher"
 }
 
