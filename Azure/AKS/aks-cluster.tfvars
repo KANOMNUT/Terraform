@@ -1,7 +1,7 @@
 aks_name                     = "aks-sea-kanomnutt"
 location                     = "southeastasia"
 resource_group_name          = "rg-sea-kanomnutt"
-kubernetes_version           = "1.27.9"
+kubernetes_version           = "1.28.3"
 sku_tier                     = "Free"
 image_cleaner_interval_hours = 24
 azure_ad = {
