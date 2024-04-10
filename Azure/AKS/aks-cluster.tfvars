@@ -36,14 +36,14 @@ agent_pool = {
   only_critical_addons_enabled = false
 }
 
-enable_ingress_application_gateway = true
-ingress_application_gateway = {
-  name      = "agw-sea-agic"
-  subnet_id = "/subscriptions/3f7d8648-d191-4240-977f-30a981a94770/resourceGroups/rg-sea-kanomnutt/providers/Microsoft.Network/virtualNetworks/vnet-sea-kanomnutt/subnets/snet-agic"
-}
+enable_ingress_application_gateway = false
+# ingress_application_gateway = {
+#   name      = "agw-sea-agic"
+#   subnet_id = "/subscriptions/3f7d8648-d191-4240-977f-30a981a94770/resourceGroups/rg-sea-kanomnutt/providers/Microsoft.Network/virtualNetworks/vnet-sea-kanomnutt/subnets/snet-agic"
+# }
 
 tags = {
-  "CreateDate" = "20-Mar-2024"
-  "System"     = "Test-SonarQube"
+  "CreateDate" = "04-Apr-2024"
+  "System"     = "Upgrade-Rancher"
 }
 
