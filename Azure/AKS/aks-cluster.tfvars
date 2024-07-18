@@ -1,7 +1,7 @@
 aks_name                     = "aks-sea-kanomnutt"
 location                     = "southeastasia"
 resource_group_name          = "rg-sea-kanomnutt"
-kubernetes_version           = "1.28.9"
+kubernetes_version           = "1.28.3"
 sku_tier                     = "Free"
 image_cleaner_interval_hours = 24
 azure_ad = {
@@ -25,7 +25,7 @@ storage_profile = {
 }
 agent_pool = {
   name                         = "agtpool"
-  vm_size                      = "Standard_D4as_v5"
+  vm_size                      = "Standard_B2ms"
   os_sku                       = "Ubuntu"
   os_disk_size_gb              = 128
   enabled_pip                  = false
@@ -43,6 +43,6 @@ enable_ingress_application_gateway = false
 # }
 
 tags = {
-  "CreateDate" = "24-Apr-2024"
+  "CreateDate" = "18-Jul-2024"
   "System"     = "UpgradeRancher"
 }
